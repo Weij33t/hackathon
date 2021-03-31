@@ -1,0 +1,14 @@
+@import '../Variables.sass'
+
+.Button 
+  cursor: pointer
+  background: darken($blue, 10%)
+  border: none
+  border-radius: 3px 
+  font-size: 18px
+  color: $white
+  padding: 10px 15px
+  &:hover 
+    background: darken($blue, 20)
+  &:disabled
+    background: $disabledButton

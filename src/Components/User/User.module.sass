@@ -1,2 +1,20 @@
-.Name 
-  color: red
+@import '../../Variables.sass'
+  
+.User 
+  display: flex
+  justify-content: center
+  .Image
+    flex-grow: 1
+    min-width: 350px
+  .TextContent 
+    flex-grow: 5
+    font-size: 20px
+    .Name 
+      padding-bottom: 20px
+      font-size: 25px
+      font-weight: 500
+    .Points
+      padding-top: 30px
+      span
+        color: $blue
+        font-weight: bold

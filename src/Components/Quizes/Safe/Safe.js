@@ -1,4 +1,5 @@
 import React from 'react'
+import { rules } from '../../../data'
 import Quiz from '../Quiz/Quiz'
 
 import c from './Safe.module.sass'
@@ -8,35 +9,20 @@ function Safe() {
     <div className={`${c.Safe} container`}>
       <h1>Тест на знание техники безопасности</h1>
       <h2>
-        Нам очень важно убедиться в том, что в чрезвычайных ситуациях вы сможете
-        что то сделать.
+        Нам важно убедиться в том, что в чрезвычайных ситуациях вы сможете найти
+        правильное решение.
       </h2>
       <div className={c.Rules}>
         <div className={c.Title}>
           Вдумчиво прочитайте правила, а затем пройдите тест на их знание:
         </div>
-        <li className={c.Rule}>
-          1. Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem
-          Lorem Lorem Lorem Lorem Lorem
-        </li>
-        <li className={c.Rule}>
-          2. Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem
-          Lorem Lorem Lorem Lorem Lorem
-        </li>
-        <li className={c.Rule}>
-          3. Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem
-          Lorem Lorem Lorem Lorem Lorem
-        </li>
-        <li className={c.Rule}>
-          4. Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem
-          Lorem Lorem Lorem Lorem Lorem
-        </li>
-        <li className={c.Rule}>
-          5. Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem
-          Lorem Lorem Lorem Lorem Lorem
-        </li>
+        {rules.map((rule, index) => (
+          <li className={c.Rule} key={rule}>
+            {index + 1 + '. ' + rule}
+          </li>
+        ))}
       </div>
-      <Quiz type="safe" />
+      <Quiz type="Техника безопасности" />
     </div>
   )
 }

@@ -1,0 +1,5 @@
+export const ADD_POINTS = 'ADD_POINTS'
+export const ADD_TEST = 'ADD_TEST'
+export const ADD_RESULTS = 'ADD_RESULTS'
+export const BUY_ITEM = 'BUY_ITEM'
+export const REDUCE_POINTS = 'REDUCE_POINTS'

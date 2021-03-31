@@ -6,6 +6,7 @@ import c from './Quizes.module.sass'
 function Quizes() {
   return (
     <div className={`${c.Quizes} container`}>
+      <h1>Список доступных тестов</h1>
       <NavLink to="/tests/safe">Техника безопасности</NavLink>
       <NavLink to="/tests/qual">Переквалификация</NavLink>
     </div>
