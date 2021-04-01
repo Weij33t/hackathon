@@ -23,13 +23,13 @@ function User() {
             Пройденные тесты:{' '}
             {userState.acceptedTests.length === 0
               ? 'Ни один тест не пройден'
-              : userState.acceptedTests}
+              : userState.acceptedTests.join(', ')}
           </div>
           <div style={{ marginTop: '10px' }}>
             Купленные льготы:{' '}
             {userState.purchased.length === 0
               ? '0 покупок'
-              : userState.purchased}
+              : userState.purchased.join(', ')}
           </div>
           <div className={c.Points}>
             Количество очков <span>{userState.points}</span>

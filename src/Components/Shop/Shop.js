@@ -1,27 +1,26 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { shop } from '../../data'
 
 import { buyItem, reducePoints } from '../../redux/User/actionCreator.js'
+import { reduceItem } from '../../redux/Shop/actionCreator.js'
 import c from './Shop.module.sass'
 import button from '../../UI/Button.module.sass'
 
 function Shop() {
   const userState = useSelector((state) => state.user)
-  const [items, changeItems] = useState(shop)
+  const items = useSelector((state) => state.shop)
   const dispatch = useDispatch()
 
   const buyGood = (itemIndex) => {
     const newItems = [...items]
     const item = { ...newItems[itemIndex] }
-    item.count -= 1
-    console.log(item.count)
-    const itemCost = newItems[itemIndex].cost
-    const itemName = newItems[itemIndex].title
+    const itemCost = item.cost
+    const itemName = item.title
     dispatch(buyItem(itemName, itemCost))
     dispatch(reducePoints(itemCost))
-    changeItems([...newItems])
+    dispatch(reduceItem(itemIndex))
   }
+  localStorage.setItem('user', JSON.stringify(userState))
 
   return (
     <div className={`container ${c.Shop}`}>

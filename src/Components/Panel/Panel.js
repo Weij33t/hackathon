@@ -7,7 +7,7 @@ import Progress from './Progress/Progress'
 import { NavLink } from 'react-router-dom'
 
 function Panel() {
-  const isAuth = localStorage.getItem('auth') ?? true
+  const isAuth = localStorage.getItem('auth') ?? false
 
   return (
     <div className={c.Panel}>

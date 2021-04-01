@@ -6,7 +6,7 @@ import {
   REDUCE_POINTS,
 } from './actionTypes'
 
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem('user')) ?? {
   points: 0,
   name: 'Nikita',
   secondName: 'Bichenov',
@@ -15,12 +15,12 @@ const initialState = {
   acceptedTests: [],
   purchased: [],
   testResults: {},
+  isAuth: false,
 }
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POINTS:
-      console.log('reducer', state.points)
       return { ...state, points: state.points + action.points }
     case ADD_TEST:
       const acceptedTests = [...state.acceptedTests]
