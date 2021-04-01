@@ -7,8 +7,12 @@ function Quizes() {
   return (
     <div className={`${c.Quizes} container`}>
       <h1>Список доступных тестов</h1>
-      <NavLink to="/tests/safe">Техника безопасности</NavLink>
-      <NavLink to="/tests/qual">Переквалификация</NavLink>
+      <NavLink to="/tests/safe">
+        <span>Техника безопасности</span>
+      </NavLink>
+      <NavLink to="/tests/qual">
+        <span>Переквалификация</span>
+      </NavLink>
     </div>
   )
 }

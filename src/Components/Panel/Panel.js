@@ -1,17 +1,15 @@
 import React from 'react'
 
 import c from './Panel.module.sass'
-import icon from '../../fonts/style.css'
-import UserProfile from './UserProfile/UserProfile'
 import Progress from './Progress/Progress'
 import { NavLink } from 'react-router-dom'
 
-function Panel() {
-  const isAuth = localStorage.getItem('auth') ?? false
-
+function Panel(props) {
+  const isAuth = localStorage.getItem('auth') ?? true
   return (
     <div className={c.Panel}>
       <NavLink to="/">Главная</NavLink>
+      <NavLink to="/rating">Рейтинг</NavLink>
       <Progress />
       <NavLink to="/shop">
         <span className="icon-cart-plus"></span>

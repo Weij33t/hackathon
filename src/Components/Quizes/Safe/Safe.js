@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { rules } from '../../../data'
 import Quiz from '../Quiz/Quiz'
@@ -5,6 +6,9 @@ import Quiz from '../Quiz/Quiz'
 import c from './Safe.module.sass'
 
 function Safe() {
+  const data = axios.get(
+    'https://hackathon-weij33t-default-rtdb.firebaseio.com/'
+  )
   return (
     <div className={`${c.Safe} container`}>
       <h1>Тест на знание техники безопасности</h1>

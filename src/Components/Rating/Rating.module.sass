@@ -1,0 +1,35 @@
+
+@import '../../Variables.sass'
+
+.Rating
+  display: flex
+  align-items: center
+  justify-content: center
+  
+.Table 
+  padding-top: 50px
+  display: flex
+  flex-direction: column
+  width: 30%
+  .Row
+    display: flex
+    border: 0.5px solid $darkBlue
+    border-right: none 
+    border-left: none
+    &:first-child
+      border-top: none
+    &:last-child
+      border-bottom: none
+    &:hover 
+      background: $blue
+      .Cell 
+        color: white
+    .Cell
+      font-size: 22px
+      padding: 10px
+      &:first-child
+        border-right: 1px solid #000
+        width: 80%
+      &:nth-child(2) 
+        width: 20%
+

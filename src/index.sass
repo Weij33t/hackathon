@@ -1,5 +1,8 @@
 @import './fonts.sass'
 
+html 
+  background: #e5f0fa
+
 body 
   margin: 0
   font-family: 'Roboto'
@@ -19,7 +22,13 @@ h2
 
 .container 
   max-width: 1200px
+  padding-left: 20px
+  padding-right: 20px
   padding-top: 70px
   padding-bottom: 50px
   margin: 0 auto
 
+@media screen and ( max-width: 768px )
+  h1
+    font-size: 22px
+  

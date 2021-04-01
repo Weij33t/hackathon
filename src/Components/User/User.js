@@ -3,13 +3,20 @@ import { useSelector } from 'react-redux'
 
 import c from './User.module.sass'
 
-function User() {
+function User(props) {
   const userState = useSelector((state) => state.user)
   console.log(userState.points)
   return (
     <div className={`container ${c.User}`}>
       <div className={c.Image}>
-        <img src="https://via.placeholder.com/350x500" />
+        <picture>
+          <source
+            srcSet="https://via.placeholder.com/200x250"
+            media="(max-width: 600px)"
+            alt="Avatar"
+          />
+          <img alt="Avatar" src="https://via.placeholder.com/350x500" />
+        </picture>
       </div>
       <div className={c.TextContent}>
         <div className={c.Name}>

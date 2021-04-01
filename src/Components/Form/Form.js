@@ -4,16 +4,11 @@ import c from './Form.module.sass'
 import input from '../../UI/Input.module.sass'
 import btn from '../../UI/Button.module.sass'
 import { useDispatch } from 'react-redux'
+import { auth } from '../../redux/Auth/actionCreator.js'
 
 function Form() {
   const [inputs, getValues] = useState({ email: '', password: '' })
   const dispatch = useDispatch()
-  const authUser = ({ email, password }) => {
-    console.log(email, password)
-    if (!password.length < 6) {
-      // dispatch(auth(email, password))
-    }
-  }
 
   return (
     <div className={`container ${c.Form}`}>
@@ -30,7 +25,10 @@ function Form() {
           className={input.Input}
           onChange={(e) => getValues({ ...inputs, password: e.target.value })}
         />
-        <button className={btn.Button} onClick={() => authUser(inputs)}>
+        <button
+          className={btn.Button}
+          onClick={() => dispatch(auth(inputs.email, inputs.password, false))}
+        >
           Войти
         </button>
       </div>

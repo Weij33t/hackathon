@@ -1,6 +1,7 @@
 @import '../../Variables.sass'
 
 .Shop
+  padding-top: 100px
   .Item 
     width: 50%
     margin: 25px auto
@@ -22,3 +23,19 @@
     .TextContent
       span
         color: $darkBlue
+
+@media screen and ( max-width: 768px )
+  .Shop
+    .Img
+      flex-grow: 2
+    .Item 
+      padding: 10px
+      width: 80%
+      flex-direction: column
+      font-size: 14px
+    button
+      margin-top: 10px
+    .Img 
+      span 
+        font-size: 35px
+      

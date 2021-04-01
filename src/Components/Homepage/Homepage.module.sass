@@ -1,8 +1,54 @@
+@import '../../Variables.sass'
+  
+.HomepageContainer
+  background: url('../../bg.jpg')
+  background-size: cover
+  overflow: hidden
+  height: 100vh
+
+
+
+  &:after 
+    content: ''
+    z-index: 2
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: rgba(0, 0, 0, 0.5)
+  
 .Homepage
   display: flex
   flex-direction: column
+  color: #fff
   .Desc 
     font-size: 20px
+  * 
+    z-index: 3
+    color: white 
+  a
+    padding: 10px 
+    padding-top: 5px
+    border-radius: 10px
+    background: $darkBlue
+    transition: 0.2s all
+    &:hover 
+      background: white 
+      span
+        color: $darkBlue
+    span 
+      color: white
+      font-size: 22px
+
   div 
     font-size: 18px
     text-align: center
+
+@media screen and ( max-width: 768px )
+  .Homepage 
+    a 
+      margin: 5px 0
+      span 
+        font-size: 16px
