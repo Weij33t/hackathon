@@ -6,9 +6,6 @@ import Quiz from '../Quiz/Quiz'
 import c from './Safe.module.sass'
 
 function Safe() {
-  const data = axios.get(
-    'https://hackathon-weij33t-default-rtdb.firebaseio.com/'
-  )
   return (
     <div className={`${c.Safe} container`}>
       <h1>Тест на знание техники безопасности</h1>

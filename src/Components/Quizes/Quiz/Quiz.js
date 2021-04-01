@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import axios from 'axios'
 
-import data from '../../../data.js'
 import {
   addPoints,
   addTest,
@@ -14,6 +14,7 @@ import c from './Quiz.module.sass'
 
 function Quiz(props) {
   const [points, setPoints] = useState({ total: 0, earned: 0 })
+  const [data, setData] = useState()
   const user = useSelector((state) => state.user)
   const testResults = user.testResults[props.type] ?? []
   const [conf, setConf] = useState(testResults)
@@ -21,9 +22,22 @@ function Quiz(props) {
     user.acceptedTests.indexOf(props.type) === -1 ? false : true
   const dispatch = useDispatch()
   const [isShow, switchShow] = useState(isAccepted)
-  const content = data[props.type]
   let totalPts = 0
   let earnedPts = 0
+  useEffect(() => {
+    console.log('asdsd')
+    const fetchData = async () => {
+      const result = await axios.get(
+        'https://hackathon-weij33t-default-rtdb.firebaseio.com/questions.json'
+      )
+
+      setData(result.data)
+    }
+
+    fetchData()
+  }, [])
+
+  console.log('12312321321', data)
 
   const userAnswer = (taskIndex, { point, answerId }, userAnswer) => {
     const newObj = [...conf]
@@ -41,7 +55,6 @@ function Quiz(props) {
     dispatch(addResults(props.type, newObj))
     setConf(newObj)
   }
-
   const showResults = () => {
     let earnedPts = 0
     let totalPts = 0
@@ -57,45 +70,53 @@ function Quiz(props) {
         {user.acceptedTests.indexOf(props.type) === -1 ? '' : 'Вы прошли тест'}
       </div>
       <div>
-        {content.map((task, taskIndex) => {
-          totalPts += +task.point.substring(0, 2)
-          return (
-            <div
-              key={task + taskIndex}
-              className={`${c.Task} ${
-                isShow ? (conf[taskIndex]?.isRight ? c.Right : c.Wrong) : null
-              }`}
-            >
-              <div className={c.TaskTitle}>
-                {task.title}.{task.point}
-              </div>
-              <div className={c.Questions}>
-                {task.questions.map((question, index) => {
-                  return (
-                    <label key={question + index} className={c.Question}>
-                      <input
-                        type="radio"
-                        name={task.title}
-                        defaultChecked={conf[taskIndex]?.userAnswer ?? false}
-                        disabled={isShow}
-                        onChange={() => userAnswer(taskIndex, task, index)}
-                      />
-                      <span>
-                        {question}{' '}
-                        {isShow && index === task.answerId ? (
-                          <span
-                            style={{ color: 'green', fontSize: '25px' }}
-                            className="icon-check"
-                          ></span>
-                        ) : null}
-                      </span>
-                    </label>
-                  )
-                })}
-              </div>
-            </div>
-          )
-        })}
+        {data === undefined
+          ? null
+          : data[props.type].map((task, taskIndex) => {
+              totalPts += +task.point.substring(0, 2)
+              return (
+                <div
+                  key={task + taskIndex}
+                  className={`${c.Task} ${
+                    isShow
+                      ? conf[taskIndex]?.isRight
+                        ? c.Right
+                        : c.Wrong
+                      : null
+                  }`}
+                >
+                  <div className={c.TaskTitle}>
+                    {task.title}.{task.point}
+                  </div>
+                  <div className={c.Questions}>
+                    {task.questions.map((question, index) => {
+                      return (
+                        <label key={question + index} className={c.Question}>
+                          <input
+                            type="radio"
+                            name={task.title}
+                            defaultChecked={
+                              conf[taskIndex]?.userAnswer ?? false
+                            }
+                            disabled={isShow}
+                            onChange={() => userAnswer(taskIndex, task, index)}
+                          />
+                          <span>
+                            {question}{' '}
+                            {isShow && index === task.answerId ? (
+                              <span
+                                style={{ color: 'green', fontSize: '25px' }}
+                                className="icon-check"
+                              ></span>
+                            ) : null}
+                          </span>
+                        </label>
+                      )
+                    })}
+                  </div>
+                </div>
+              )
+            })}
       </div>
       {!isShow ? (
         <button
